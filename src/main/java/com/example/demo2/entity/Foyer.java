@@ -1,15 +1,13 @@
 package com.example.demo2.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -22,4 +20,8 @@ public class Foyer implements Serializable {
     private long idForyer;
     private String nomFoyer;
     private long capaciteFoyer;
+    @OneToOne(mappedBy = "foyer")
+    private Universite universite;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="foyer")
+    private Set<Bloc> Blocs;
 }
