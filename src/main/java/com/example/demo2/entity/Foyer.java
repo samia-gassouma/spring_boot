@@ -17,11 +17,22 @@ import java.util.Set;
 public class Foyer implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idForyer;
+    private long idFoyer;
     private String nomFoyer;
     private long capaciteFoyer;
     @OneToOne(mappedBy = "foyer")
     private Universite universite;
     @OneToMany(cascade = CascadeType.ALL, mappedBy="foyer")
-    private Set<Bloc> Blocs;
+    private Set<Bloc> blocs;
+
+    @Override
+    public String toString() {
+        return "Foyer{" +
+                "idForyer=" + idFoyer +
+                ", nomFoyer='" + nomFoyer + '\'' +
+                ", capaciteFoyer=" + capaciteFoyer +
+                ", universite=" + universite +
+                ", Blocs=" + blocs +
+                '}';
+    }
 }
