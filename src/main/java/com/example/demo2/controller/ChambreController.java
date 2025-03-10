@@ -1,7 +1,7 @@
 package com.example.demo2.controller;
 
 import com.example.demo2.entity.Chambre;
-import com.example.demo2.entity.Foyer;
+import com.example.demo2.entity.TypeChambre;
 import com.example.demo2.service.ChambreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -39,5 +39,15 @@ public class ChambreController {
     @GetMapping("/getChambre/{id}")
     public Chambre retrieveChambre (@PathVariable("id") long idChambre){
         return chambreService.retrieveChambre(idChambre);
+    }
+
+    @GetMapping("/getChambreReserve")
+    public List<Chambre> retrieveChambreReserve(@RequestParam("nomUniversite") String nomUniversite, @RequestParam("type") TypeChambre type){
+        return chambreService.getChambreReserve(nomUniversite, type);
+    }
+
+    @GetMapping("/getChambreParBlocEtType")
+    public List<Chambre> retrieveChambreParBlocEtType(@RequestParam("idBloc") long idBloc, @RequestParam("type") TypeChambre type){
+        return chambreService.getChambresParBlocEtType(idBloc, type);
     }
 }

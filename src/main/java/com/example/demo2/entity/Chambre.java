@@ -1,5 +1,6 @@
 package com.example.demo2.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,7 +22,9 @@ public class Chambre implements Serializable {
     private long numeroChambre;
     private TypeChambre typeC;
     @ManyToOne
+    @JsonIgnore
     private Bloc bloc;
     @OneToMany(cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Reservation> reservations;
 }

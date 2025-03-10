@@ -3,8 +3,10 @@ package com.example.demo2.controller;
 import com.example.demo2.entity.Reservation;
 import com.example.demo2.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,4 +36,8 @@ public class ReservationController {
         return reservationService.retrieveReservation(idReservation);
     }
 
+    @GetMapping("/getReservationParUniversite")
+    public List<Reservation> retrieveReservationParuniversite(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date anneeUniversite, @RequestParam String nomUniversite){
+        return reservationService.getReservationParnomUniversite(anneeUniversite,nomUniversite);
+    }
 }

@@ -1,8 +1,9 @@
 package com.example.demo2.controller;
 
 import com.example.demo2.entity.Bloc;
-import com.example.demo2.entity.Foyer;
+import com.example.demo2.entity.Universite;
 import com.example.demo2.service.BlocService;
+import com.example.demo2.service.UniversiteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,8 @@ import java.util.Optional;
 public class BlocController {
     @Autowired
     private BlocService blocService;
+    @Autowired
+    private UniversiteService universiteService;
 
     @GetMapping("/getAllBloc")
     List<Bloc> retrieveBlocs(){
@@ -45,4 +48,8 @@ public class BlocController {
         blocService.removeBloc(idBloc);
     }
 
+    @GetMapping("/GetBlocByName/{name}")
+    List <Bloc> retrieveBlocByName(@PathVariable("name") String name){
+        return blocService.getBlocByName(name);
+    }
 }
