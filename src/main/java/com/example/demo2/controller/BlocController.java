@@ -1,6 +1,7 @@
 package com.example.demo2.controller;
 
 import com.example.demo2.entity.Bloc;
+import com.example.demo2.entity.Chambre;
 import com.example.demo2.entity.Universite;
 import com.example.demo2.service.BlocService;
 import com.example.demo2.service.UniversiteService;
@@ -51,5 +52,10 @@ public class BlocController {
     @GetMapping("/GetBlocByName/{name}")
     List <Bloc> retrieveBlocByName(@PathVariable("name") String name){
         return blocService.getBlocByName(name);
+    }
+
+    @PutMapping("/affecterChambresABloc/{idBloc}")
+    public Bloc affecterChambresABloc(@PathVariable("idBloc") long idBloc, @RequestBody List<Long> numChambre){
+        return blocService.affecterChambresABloc(numChambre, idBloc);
     }
 }

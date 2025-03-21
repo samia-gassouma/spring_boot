@@ -20,7 +20,7 @@ public class Foyer implements Serializable {
     private long idFoyer;
     private String nomFoyer;
     private long capaciteFoyer;
-    @OneToOne(mappedBy = "foyer")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "foyer")
     private Universite universite;
     @OneToMany(cascade = CascadeType.ALL, mappedBy="foyer")
     private Set<Bloc> blocs;

@@ -1,7 +1,9 @@
 package com.example.demo2.service;
 
 import com.example.demo2.entity.Bloc;
+import com.example.demo2.entity.Chambre;
 import com.example.demo2.repository.IBlocRepository;
+import com.example.demo2.repository.IChambreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,9 @@ import java.util.List;
 public class BlocService implements IBlocService{
     @Autowired
     IBlocRepository blocRepository;
+
+    @Autowired
+    IChambreRepository chambreRepository;
 
     @Override
     public List<Bloc> retrieveBlocs() {
@@ -40,5 +45,19 @@ public class BlocService implements IBlocService{
     @Override
     public List<Bloc> getBlocByName(String name) {
         return blocRepository.retrieveBlocByName(name);
+    }
+
+    @Override
+    public Bloc affecterChambresABloc(List<Long> numChambre, long idBloc){
+        Bloc bloc = blocRepository.findById(idBloc).get();
+        List<Chambre> chambres = chambreRepository.findAllByNumeroChambreIn(numChambre);
+        if (chambres.isEmpty()) {
+            throw new RuntimeException("Aucune chambre trouvée avec les numéros spécifiés : " + numChambre);
+        }
+        chambres.forEach(chambre -> {
+            chambre.setBloc(bloc);
+        });
+        chambreRepository.saveAll(chambres);
+        return bloc;
     }
 }

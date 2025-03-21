@@ -16,4 +16,8 @@ public interface IChambreRepository extends CrudRepository<Chambre, Long> {
 
     @Query("SELECT c FROM Chambre c WHERE c.bloc.idBloc=:idBloc AND c.typeC=:typeC")
     public List<Chambre> getChambresParBlocEtType (long idBloc, TypeChambre typeC) ;
+
+    List<Chambre> findAllByNumeroChambreIn(List<Long> numChambre);
+
+    long countChambreByIdChambre(long idChambre);
 }

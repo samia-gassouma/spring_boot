@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IEtudiantRepository extends CrudRepository<Etudiant,Long> {
+    Etudiant findByCin(long cinEtudiant);
 }

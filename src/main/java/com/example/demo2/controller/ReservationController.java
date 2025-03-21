@@ -21,13 +21,14 @@ public class ReservationController {
     public List<Reservation> retrieveAllReservation(){
         return reservationService.retrieveAllReservation();
     }
+
     @PutMapping("/updateReservation/{id}")
     public Reservation updateReservation (@RequestBody Reservation  res,@PathVariable("id") String id){
         Optional<Reservation> reservation = Optional.ofNullable(reservationService.retrieveReservation(id));
         if(!reservation.isPresent()){
             return null;
         }
-        res.setIdReservation(id);
+        //res.setIdReservation(id);
         return reservationService.updateReservation(res);
     }
 
@@ -39,5 +40,10 @@ public class ReservationController {
     @GetMapping("/getReservationParUniversite")
     public List<Reservation> retrieveReservationParuniversite(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date anneeUniversite, @RequestParam String nomUniversite){
         return reservationService.getReservationParnomUniversite(anneeUniversite,nomUniversite);
+    }
+
+    @PostMapping("/addReservation/{idBloc}/{cinEtudiant}")
+    public Reservation createReservation(@PathVariable long idBloc, @PathVariable int cinEtudiant){
+        return reservationService.ajouterReservation(idBloc,cinEtudiant);
     }
 }

@@ -46,4 +46,9 @@ public class FoyerController  {
         foyerService.removeFoyer(idFoyer);
     }
 
+    @PostMapping("/ajouterFoyerEtAffecterAUniversite/{idUniversite}")
+    public Foyer ajouterFoyerEtAffecterAUniversite(@RequestBody Foyer f,@PathVariable long idUniversite) {
+        return foyerService.ajouterFoyerEtAffecterAUniversite(f,idUniversite);
+    }
+
 }

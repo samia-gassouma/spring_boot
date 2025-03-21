@@ -11,4 +11,6 @@ public interface IReservationService {
     Reservation retrieveReservation (String idReservation);
 
     List<Reservation> getReservationParnomUniversite(Date anneeUniversite,String nomUniversite);
+
+    Reservation ajouterReservation(long idBloc, long cinEtudiant);
 }

@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -22,5 +23,5 @@ public class Reservation implements Serializable {
     private Date anneeUniversitaire;
     private boolean estValide;
     @ManyToMany(cascade = CascadeType.ALL)
-    private Set<Etudiant> etudiants;
+    private Set<Etudiant> etudiants = new HashSet<>();
 }
